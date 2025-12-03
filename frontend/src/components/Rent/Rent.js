@@ -10,6 +10,7 @@ const Rent = (props) => {
   // Rent Component v2.2 - Added Redirection
   const currentAddress = useSelector((state) => state.currentAddress.address);
   const [loading, setLoading] = useState({ pickup: false, dropoff: false });
+  const [isActive, setIsActive] = useState(false);
   const navigate = useNavigate();
 
   const MIN_DEPOSIT = '0.001';
@@ -17,6 +18,23 @@ const Rent = (props) => {
   const showToast = (message, type) => {
     alert(`${type.toUpperCase()}: ${message}`);
   };
+
+  // Check status on mount and after transactions
+  const checkStatus = async () => {
+    if (props.contract && currentAddress) {
+      try {
+        const renter = await props.contract.renters(currentAddress);
+        const active = renter.active !== undefined ? renter.active : renter[4];
+        setIsActive(active);
+      } catch (err) {
+        console.error('Error checking status:', err);
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    checkStatus();
+  }, [props.contract, currentAddress]);
 
   const pickUpHandler = async () => {
     console.log('🚗 PickUpHandler Triggered');
@@ -46,16 +64,16 @@ const Rent = (props) => {
       // Reverting to index-based access as named properties might not be available
       // Struct: [walletAddress, firstName, lastName, canRent, active, balance, due, start, end, withdrawable]
       const canRent = renter[3];
-      const isActive = renter[4];
+      const active = renter[4];
       const due = renter[6];
 
       console.log('👤 Renter Status (Parsed):', {
         due: due ? due.toString() : 'N/A',
         canRent,
-        isActive
+        active
       });
 
-      if (isActive) {
+      if (active) {
         console.log('⚠️ User already has an active rental');
         showToast('You already have an active rental. Please drop off your current car first.', 'warning');
         setLoading({ ...loading, pickup: false });
@@ -96,10 +114,9 @@ const Rent = (props) => {
 
       showToast('Car picked up successfully! Enjoy your ride.', 'success');
       setLoading({ ...loading, pickup: false }); // Stop loading spinner
-      
-      setTimeout(() => {
-        navigate('/rentacar');
-      }, 1500);
+
+      await checkStatus(); // Update local state
+      navigate('/rentacar'); // Ensure we stay/navigate here
     } catch (err) {
       console.error('Pickup error:', err);
 
@@ -126,11 +143,19 @@ const Rent = (props) => {
     setLoading({ ...loading, dropoff: true });
 
     try {
-      const dropOff = await props.contract.dropOff(currentAddress);
-      await dropOff.wait();
+      // Use fresh instance for dropoff too
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const freshContract = new ethers.Contract(props.contract.address, props.contract.interface, signer);
 
-      showToast('Car dropped off successfully! Please pay your dues on the Balance page.', 'success');
-      setTimeout(() => navigate('/balance'), 1500);
+      const dropOffTx = await freshContract.dropOff(currentAddress);
+      await dropOffTx.wait();
+
+      showToast('Car dropped off successfully!', 'success');
+      setLoading({ ...loading, dropoff: false });
+
+      await checkStatus(); // Update local state
+      navigate('/rentacar'); // Stay on rent page as requested
     } catch (err) {
       console.error('Dropoff error:', err);
 
@@ -170,14 +195,16 @@ const Rent = (props) => {
               <button
                 className={`drop ${loading.pickup ? 'loading' : ''}`}
                 onClick={pickUpHandler}
-                disabled={loading.pickup || loading.dropoff}
+                disabled={loading.pickup || loading.dropoff || isActive}
+                style={{ opacity: isActive ? 0.5 : 1, cursor: isActive ? 'not-allowed' : 'pointer' }}
               >
-                {loading.pickup ? '' : 'Pickup'}
+                {loading.pickup ? '' : (isActive ? 'Rented' : 'Pickup')}
               </button>
               <button
                 className={`drop ${loading.dropoff ? 'loading' : ''}`}
                 onClick={dropOffHandler}
-                disabled={loading.pickup || loading.dropoff}
+                disabled={loading.pickup || loading.dropoff || !isActive}
+                style={{ opacity: !isActive ? 0.5 : 1, cursor: !isActive ? 'not-allowed' : 'pointer' }}
               >
                 {loading.dropoff ? '' : 'Drop off'}
               </button>
