@@ -11,20 +11,24 @@
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: var(--border-radius, 12px);
-    font-size: 1.1rem;
+    font-size: 1rem;
+    /* Reduced font size */
     color: var(--text-light, #f8fafc);
-    padding: 1.5rem 1rem;
+    padding: 1rem 0.75rem;
+    /* Reduced padding */
     font-weight: 600;
     transition: all 0.3s ease-in-out;
     text-align: center;
-    min-width: 200px;
+    min-width: 160px;
+    /* Reduced min-width */
     flex: 1;
-    max-width: 300px;
+    max-width: 220px;
+    /* Reduced max-width */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.25rem;
 }
 
 .balance:hover {
@@ -37,9 +41,10 @@
 .balance .ethsymbl {
     display: block;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
+    /* Reduced icon size */
     color: var(--primary-color, #D4AF37);
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.1rem;
     filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
 }
 
@@ -47,19 +52,56 @@
 .status-rented {
     border-color: rgba(234, 179, 8, 0.5);
     background: rgba(234, 179, 8, 0.1);
+    color: #fef08a !important;
+    /* Light yellow text for better readability on dark bg, or dark if bg is light. 
+                                  Wait, the bg is rgba(..., 0.1) which is darkish on dark theme?
+                                  The screenshot showed a light box? No, the screenshot showed a yellow box.
+                                  If the theme is dark, rgba(..., 0.1) is subtle. 
+                                  Let's look at the screenshot again.
+                                  The screenshot shows a WHITE background for the page?
+                                  Ah, the screenshot shows a WHITE background!
+                                  "Manage your deposits..." text is dark.
+                                  The user might be on a light theme or the CSS is broken.
+                                  The `index.css` has `background-color: var(--bg-dark);` which is `#0f172a`.
+                                  Why is the screenshot white?
+                                  Maybe the user has a browser extension or the CSS isn't loading?
+                                  Or maybe `Wallet.css` or `App.css` overrides it?
+                                  Wait, the screenshot shows the navbar is dark, but the main content area is white.
+                                  Let's check `Wallet.css` for background.
+                                  It doesn't set background.
+                                  Maybe `Dashboard.js` or `App.js` sets it?
+                                  The user has `Dashboard.js` open.
+                                  
+                                  Regardless, if the background is light (as seen in screenshot), 
+                                  then `rgba(234, 179, 8, 0.1)` is a very light yellow.
+    background: rgba(30, 41, 59, 0.7); /* Match .balance background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(234, 179, 8, 0.5);
+    /* Yellow border */
+    color: #facc15 !important;
+    /* Bright yellow text */
+    font-weight: 700;
 }
 
 .status-rented .ethsymbl {
-    color: #eab308;
+    color: #facc15 !important;
 }
 
 .status-available {
-    border-color: rgba(34, 197, 94, 0.5);
-    background: rgba(34, 197, 94, 0.1);
+    background: rgba(30, 41, 59, 0.7);
+    /* Match .balance background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(34, 197, 94, 0.5);
+    /* Green border */
+    color: #4ade80 !important;
+    /* Bright green text */
+    font-weight: 700;
 }
 
 .status-available .ethsymbl {
-    color: #22c55e;
+    color: #4ade80 !important;
 }
 
 /* Responsive */

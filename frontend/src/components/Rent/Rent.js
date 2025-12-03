@@ -82,12 +82,24 @@ const Rent = (props) => {
       }
 
       console.log('🚀 Calling contract.pickUp...');
-      const pickUp = await props.contract.pickUp(currentAddress);
-      console.log('⏳ Waiting for transaction...');
-      await pickUp.wait();
+
+      // Create a fresh instance to ensure reliable transaction handling
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const freshContract = new ethers.Contract(props.contract.address, props.contract.interface, signer);
+
+      const pickUpTx = await freshContract.pickUp(currentAddress);
+      console.log('⏳ Waiting for transaction:', pickUpTx.hash);
+
+      const receipt = await pickUpTx.wait();
+      console.log('✅ Transaction confirmed:', receipt);
 
       showToast('Car picked up successfully! Enjoy your ride.', 'success');
-      setTimeout(() => navigate('/balance'), 1500);
+      setLoading({ ...loading, pickup: false }); // Stop loading spinner
+      
+      setTimeout(() => {
+        navigate('/rentacar');
+      }, 1500);
     } catch (err) {
       console.error('Pickup error:', err);
 

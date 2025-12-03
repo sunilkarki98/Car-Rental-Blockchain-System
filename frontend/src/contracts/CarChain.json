@@ -1,5 +1,5 @@
 {
-  "address": "0x9D0BE83C70b84b48dC2aBA4eeC7Eb78507d73376",
+  "address": "0x56f74592420fAf77AD3Ea95c5CEd24f5c90f5e5c",
   "abi": [
     {
       "inputs": [],
@@ -449,5 +449,5 @@
   ],
   "network": "localhost",
   "chainId": 31337,
-  "deployedAt": "2025-12-03T00:11:27.452Z"
+  "deployedAt": "2025-12-03T02:07:34.920Z"
 }

@@ -6,7 +6,7 @@ import Wallet from './Wallet/Wallet';
 import { connect } from '../features/connect/checkConnectionSlice';
 import { updateAddress } from '../features/currentAddress/currentAddresSlice';
 import { ethers } from 'ethers';
-import contractAbi from '../assets/CarChain.json';
+import contractAbi from '../contracts/CarChain.json';
 import Login from './Login/Login';
 import RentDetails from './RentDetails/RentDetails';
 import Home from './Home/Home';
@@ -20,7 +20,7 @@ export default function Dashboard() {
     const registered = useSelector((state) => state.registrator.registered);
     const currentAddress = useSelector((state) => state.currentAddress.address);
     const dispatch = useDispatch();
-    const contractAddress = '0xa1f8155a5708962139C920De2412BED69708E01b';
+    const contractAddress = contractAbi.address;
 
     useEffect(() => {
         // Only auto-connect if user hasn't connected yet
@@ -59,22 +59,23 @@ export default function Dashboard() {
     };
 
 
-    // Only create contract instance if provider is available
-    const getContract = () => {
+    const [contract, setContract] = useState(null);
+    const [provider, setProvider] = useState(null);
+
+    useEffect(() => {
         if (window.ethereum) {
-            const provider = new ethers.providers.Web3Provider(window.ethereum, 'any');
-            const signer = provider.getSigner();
-            return new ethers.Contract(
+            const newProvider = new ethers.providers.Web3Provider(window.ethereum, 'any');
+            const signer = newProvider.getSigner();
+            const newContract = new ethers.Contract(
                 contractAddress,
                 contractAbi.abi,
                 signer
             );
-        }
-        return null;
-    };
 
-    const contract = getContract();
-    const provider = window.ethereum ? new ethers.providers.Web3Provider(window.ethereum, 'any') : null;
+            setProvider(newProvider);
+            setContract(newContract);
+        }
+    }, [contractAddress]);
 
     return (
         <div className="dashboard">

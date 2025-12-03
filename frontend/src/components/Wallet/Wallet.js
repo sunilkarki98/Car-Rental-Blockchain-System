@@ -22,7 +22,10 @@ export default function Wallet({ contract }) {
   };
 
   const fetchRenterData = useCallback(async (isAutoRefresh = false) => {
-    if (!contract || !currentAddress) return;
+    if (!contract || !currentAddress) {
+      console.log('Wallet: Contract or Address missing', { contract: !!contract, currentAddress });
+      return;
+    }
 
     try {
       if (isAutoRefresh) setRefreshing(true);
@@ -32,12 +35,17 @@ export default function Wallet({ contract }) {
       setBalance(balanceFormatted);
 
       const renterData = await contract.renters(currentAddress);
-      const dueData = renterData[6];
+
+      // Use named properties if available, otherwise fallback to indices
+      const dueData = renterData.due || renterData[6];
       const dueFormatted = ethers.utils.formatEther(dueData);
       setDue(dueFormatted);
 
-      const activeStatus = renterData[4];
-      const startTime = renterData[7]; // Assuming start is at index 7 based on struct
+      const activeStatus = renterData.active !== undefined ? renterData.active : renterData[4];
+      const startTime = renterData.start || renterData[7];
+
+      console.log('Wallet: Status:', { activeStatus, startTime: startTime?.toString() });
+
       setIsRented(activeStatus);
 
       if (activeStatus) {
@@ -165,28 +173,39 @@ export default function Wallet({ contract }) {
     }
   };
 
+  console.log('Wallet: Render Cycle - isRented:', isRented);
+
   return (
     <>
-      <div className="container wallet">
-        <div className="wallet-header">
-          <h1>💰 Account & Balance Management</h1>
-          <p className="wallet-subtitle">Manage your deposits, dues, and rental payments</p>
+      <div className="container wallet" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 auto', width: '100%', maxWidth: '1200px' }}>
+        <div className="wallet-header" style={{ marginTop: '180px', paddingTop: '0', textAlign: 'center', width: '100%' }}>
+          <h1 style={{ textAlign: 'center', width: '100%', justifyContent: 'center', display: 'flex', gap: '10px' }}>
+            <span>💰</span> Account & Balance Management
+          </h1>
+          <p className="wallet-subtitle" style={{ textAlign: 'center', width: '100%' }}>Manage your deposits, dues, and rental payments</p>
           {refreshing && <span className="refresh-indicator">Refreshing...</span>}
         </div>
 
-        <div className="stats-container">
+        <div className="stats-container" style={{ justifyContent: 'center', width: '100%', marginTop: '2rem' }}>
           <Display Icon={<FaEthereum />} Title='Balance' Measure={`${balance} ETH`} />
           <Display Icon={<AiFillCar />} Title='Dues' Measure={`${due} ETH`} />
           <Display Icon={<FaEthereum />} Title='Rent Time' Measure={`${totalDuration} min`} />
           <Display
             Icon={<AiFillCar />}
             Title='Status'
-            Measure={isRented ? 'Rented' : 'Available'}
+            Measure={isRented ? 'CURRENTLY RENTED' : 'NOT RENTED'}
             className={isRented ? 'status-rented' : 'status-available'}
+            style={{
+              background: 'rgba(30, 41, 59, 0.7)',
+              backdropFilter: 'blur(10px)',
+              border: isRented ? '1px solid rgba(234, 179, 8, 0.5)' : '1px solid rgba(34, 197, 94, 0.5)',
+              color: isRented ? '#facc15' : '#4ade80',
+              fontWeight: '700'
+            }}
           />
         </div>
 
-        <div className='form-container'>
+        <div className='form-container' style={{ maxWidth: '900px', width: '100%', justifyContent: 'center' }}>
           <div className='form-card'>
             <h2>💰 Deposit Funds</h2>
             <p className="form-description">Add ETH to your account balance</p>
