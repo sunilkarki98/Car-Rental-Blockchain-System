@@ -1,0 +1,119 @@
+.login-page {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: calc(100vh - var(--nav-height));
+	background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.1), transparent 40%),
+		radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.1), transparent 40%);
+}
+
+.login-container {
+	width: 100%;
+	max-width: 450px;
+	padding: 3rem;
+	border-radius: 24px;
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+
+.login-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+.login-header h1 {
+	font-size: 2rem;
+	font-weight: 700;
+	color: var(--text-light);
+	margin-bottom: 0.5rem;
+	letter-spacing: -0.5px;
+}
+
+.login-header p {
+	color: var(--text-muted);
+	font-size: 0.95rem;
+	margin-bottom: 2.5rem;
+}
+
+.input-group {
+	margin-bottom: 1.5rem;
+}
+
+.modern-input {
+	width: 100%;
+	padding: 1rem 1.5rem;
+	background: rgba(15, 23, 42, 0.6);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 12px;
+	color: var(--text-light);
+	font-size: 1rem;
+	transition: all 0.3s ease;
+}
+
+.modern-input:focus {
+	outline: none;
+	border-color: var(--primary-color);
+	box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+	background: rgba(15, 23, 42, 0.8);
+}
+
+.modern-btn {
+	width: 100%;
+	padding: 1rem;
+	border: none;
+	border-radius: 12px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-top: 1rem;
+}
+
+.primary-btn {
+	background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+	color: #000;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.primary-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.secondary-btn {
+	background: transparent;
+	border: 1px solid var(--primary-color);
+	color: var(--primary-color);
+}
+
+.secondary-btn:hover {
+	background: rgba(212, 175, 55, 0.1);
+}
+
+.login-footer {
+	margin-top: 2.5rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.05);
+	padding-top: 1.5rem;
+}
+
+.login-footer p {
+	color: var(--text-muted);
+	font-size: 0.8rem;
+	margin: 0;
+}
+
+@media (max-width: 480px) {
+	.login-container {
+		padding: 2rem;
+		margin: 1rem;
+	}
+}

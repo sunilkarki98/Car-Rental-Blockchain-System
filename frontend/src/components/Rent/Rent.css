@@ -1,0 +1,196 @@
+/* Premium Card-Based Design */
+.container {
+    padding: 0;
+    margin: 0 15px;
+}
+
+.content {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: var(--border-radius, 12px);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content:hover {
+    transform: translateY(-8px);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: 0 12px 32px rgba(212, 175, 55, 0.15);
+}
+
+/* Car Name/Brand */
+.car-name {
+    margin-bottom: 0.5rem;
+}
+
+.car-name h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color, #D4AF37);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.car-name h1:first-child {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-muted, #94a3b8);
+    margin-bottom: 0.25rem;
+}
+
+/* Price Display */
+.ethcount {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-light, #f8fafc);
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 8px;
+}
+
+.ethcount span {
+    font-size: 0.9rem;
+    color: var(--text-muted, #94a3b8);
+}
+
+/* Car Specifications */
+.functions {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.functions ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 1rem 0;
+    color: var(--text-light, #f8fafc);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.functions ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.functions ul li svg {
+    font-size: 1.3rem;
+    color: var(--primary-color, #D4AF37);
+}
+
+/* Car Image */
+.car-img {
+    max-height: 180px;
+    max-width: 90%;
+    margin: 1.5rem auto;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.car-img:hover {
+    transform: scale(1.1);
+}
+
+/* Buttons Container */
+.content .d-flex {
+    margin-top: 1.5rem;
+}
+
+/* Action Buttons */
+.drop {
+    border: none;
+    background: linear-gradient(135deg, var(--primary-color, #D4AF37), var(--secondary-color, #C5A028));
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--bg-dark, #0f172a);
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.drop:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    filter: brightness(1.1);
+}
+
+.drop:active {
+    transform: scale(0.98);
+}
+
+.drop:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Loading State */
+.drop.loading {
+    position: relative;
+    color: transparent;
+}
+
+.drop.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid var(--bg-dark, #0f172a);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .car-name h1 {
+        font-size: 1.2rem;
+    }
+
+    .car-name h1:first-child {
+        font-size: 1rem;
+    }
+
+    .ethcount {
+        font-size: 1.1rem;
+    }
+
+    .functions ul {
+        gap: 1rem;
+        font-size: 0.85rem;
+    }
+
+    .drop {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+}

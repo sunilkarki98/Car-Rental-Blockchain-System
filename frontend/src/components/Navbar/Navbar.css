@@ -1,0 +1,170 @@
+.navbar {
+    padding: 1rem 0;
+    transition: all var(--transition-speed) ease;
+}
+
+.bg-glass {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    margin: 0 0.2rem;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color) !important;
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.nav-icon {
+    font-size: 1.2rem;
+}
+
+.wallet-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-speed) ease;
+    cursor: pointer;
+}
+
+.wallet-badge:hover {
+    border-color: var(--primary-color);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.wallet-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.wallet-text {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.profile-link {
+    color: var(--text-light) !important;
+    padding: 0 !important;
+}
+
+.profile-link:hover {
+    color: var(--primary-color) !important;
+    background: none !important;
+}
+
+/* Balance Display in Navbar */
+.balance-display {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 6px 14px;
+    border-radius: 50px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.eth-icon {
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.balance-text {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Dues Badge */
+.dues-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(239, 68, 68, 0.15);
+    padding: 6px 12px;
+    border-radius: 50px;
+    border: 1px solid var(--danger-color);
+}
+
+.dues-label {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.dues-amount {
+    color: #fecaca;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Pay Dues Button */
+.pay-dues-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--bg-dark);
+    border: none;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.pay-dues-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+    filter: brightness(1.1);
+}
+
+.pay-dues-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.pay-dues-btn.loading {
+    position: relative;
+}
+
+.pay-icon {
+    font-size: 1rem;
+}
+
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: var(--bg-dark);
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        margin-top: 1rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .wallet-badge,
+    .balance-display,
+    .dues-badge,
+    .pay-dues-btn {
+        margin-top: 1rem;
+        width: fit-content;
+    }
+}

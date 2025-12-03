@@ -1,0 +1,55 @@
+.rentdetails {
+    display: flex;
+    flex-direction: column;
+    padding-top: calc(var(--nav-height, 80px) + 2rem);
+    /* Add navbar height + spacing */
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 3rem;
+    background: transparent;
+    min-height: 100vh;
+}
+
+.top-heading {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color, #D4AF37), var(--secondary-color, #C5A028));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .rentdetails {
+        padding: 2rem 1rem;
+    }
+
+    .top-heading {
+        margin-bottom: 2rem;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}

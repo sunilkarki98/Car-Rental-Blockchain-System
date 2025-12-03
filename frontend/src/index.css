@@ -1,0 +1,114 @@
+:root {
+  /* Premium Dark Theme Palette */
+  --primary-color: #D4AF37;
+  /* Metallic Gold */
+  --secondary-color: #C5A028;
+  /* Darker Gold */
+  --bg-dark: #0f172a;
+  /* Deep Navy/Black */
+  --bg-card: #1e293b;
+  /* Lighter Navy for cards */
+  --text-light: #f8fafc;
+  /* Off-white text */
+  --text-muted: #94a3b8;
+  /* Muted text */
+  --accent-color: #3b82f6;
+  /* Subtle blue accent for tech feel */
+  --danger-color: #ef4444;
+  --success-color: #22c55e;
+
+  /* Spacing & Layout */
+  --nav-height: 80px;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+  /* Increased from 16px */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Global Icon Sizing */
+svg {
+  vertical-align: middle;
+}
+
+.nav-icon {
+  font-size: 1.4rem;
+  /* Increased icon size */
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+.dashboard {
+  padding: 2rem 5%;
+  min-height: calc(100vh - var(--nav-height));
+}
+
+.wallet {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: calc(var(--nav-height, 80px) + 2rem);
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+  background-color: transparent;
+}
+
+/* Utility Classes */
+.text-gold {
+  color: var(--primary-color) !important;
+}
+
+.bg-glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+
+  .dashboard {
+    padding: 1rem;
+  }
+}

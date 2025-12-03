@@ -1,0 +1,75 @@
+.carousel-img {
+    height: 90vh;
+    object-fit: cover;
+    filter: brightness(0.6);
+    /* Darken image for better text contrast */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 1;
+}
+
+.carousel-caption {
+    z-index: 2;
+    bottom: 20%;
+}
+
+.carousel-caption h5 {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.carousel-caption p {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-btn {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 12px 36px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--bg-dark);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    color: var(--bg-dark);
+}
+
+@media (max-width: 768px) {
+    .carousel-caption h5 {
+        font-size: 2rem;
+    }
+
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+
+    .carousel-img {
+        height: 60vh;
+    }
+}

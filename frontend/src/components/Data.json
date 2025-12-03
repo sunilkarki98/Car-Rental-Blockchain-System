@@ -1,0 +1,32 @@
+[               
+    {         
+        "id": 1,
+        "cbrand": "Ford",
+        "cname": "Ecosport",
+        "ethperday": "0.01", 
+        "bagcount": "1",
+        "geartype": "Manual",
+        "seatcount": "3",
+        "carimage": "images/car1.png"
+    },
+    {
+        "id": 2,
+        "cbrand": "Toyota",
+        "cname": "Innova",
+        "ethperday": "0.01",
+        "bagcount": "3",
+        "geartype": "Automatic",
+        "seatcount": "8",
+        "carimage": "images/car2.png"
+    },
+    {
+        "id": 3,
+        "cbrand": "Mahindra",
+        "cname": "Xylo",
+        "ethperday": "0.01",
+        "bagcount": "2",
+        "geartype": "Manual",
+        "seatcount": "7",
+        "carimage": "images/car3.png"
+    }
+]
