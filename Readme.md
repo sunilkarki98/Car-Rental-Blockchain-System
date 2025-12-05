@@ -62,10 +62,6 @@
 ## Video
 
 
-https://github.com/Nikhil1601/Car-Rental-Blockchain-System/assets/90842808/66e3532a-8020-4bc9-bb05-b7ed1c7ef24d
-
-
-
 ## Setup
 
 npm init

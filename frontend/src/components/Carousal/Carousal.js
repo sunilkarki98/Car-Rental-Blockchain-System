@@ -68,7 +68,7 @@ export default function Carousal() {
                         <div className="carousel-caption d-none d-md-block">
                             <h5 className="animate__animated animate__fadeInDown">Multiple Delivery Options</h5>
                             <p className="animate__animated animate__fadeInUp">Get your car delivered at Doorstep, Airport, Hub or nearest SPOC location.</p>
-                            <Link to="/rentacar" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
+                            <Link to="/rentdetails" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
                         </div>
                     </div>
                     <div className="carousel-item" data-bs-interval="3000">
@@ -77,7 +77,7 @@ export default function Carousal() {
                         <div className="carousel-caption d-none d-md-block">
                             <h5 className="animate__animated animate__fadeInDown">Flexible Kms Options</h5>
                             <p className="animate__animated animate__fadeInUp">Drive our latest car models. Average age of our fleet is 20 months.</p>
-                            <Link to="/rentacar" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
+                            <Link to="/rentdetails" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
                         </div>
                     </div>
                     <div className="carousel-item" data-bs-interval="3000">
@@ -86,7 +86,7 @@ export default function Carousal() {
                         <div className="carousel-caption d-none d-md-block">
                             <h5 className="animate__animated animate__fadeInDown">Multiple Car Varieties</h5>
                             <p className="animate__animated animate__fadeInUp">Available all types of models from 2 seater to 8 seater.</p>
-                            <Link to="/rentacar" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
+                            <Link to="/rentdetails" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
                         </div>
                     </div>
                     <div className="carousel-item" data-bs-interval="3000">
@@ -95,7 +95,7 @@ export default function Carousal() {
                         <div className="carousel-caption d-none d-md-block">
                             <h5 className="animate__animated animate__fadeInDown">Secured & Fast Service</h5>
                             <p className="animate__animated animate__fadeInUp">Secure, swift, and stylish: our services offer the perfect blend of efficiency.</p>
-                            <Link to="/rentacar" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
+                            <Link to="/rentdetails" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
                         </div>
                     </div>
                     <div className="carousel-item" data-bs-interval="3000">
@@ -104,7 +104,7 @@ export default function Carousal() {
                         <div className="carousel-caption d-none d-md-block">
                             <h5 className="animate__animated animate__fadeInDown">Free to Roam Everywhere</h5>
                             <p className="animate__animated animate__fadeInUp">Service is available everywhere and free to drive for long tours and trips.</p>
-                            <Link to="/rentacar" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
+                            <Link to="/rentdetails" className="btn btn-primary btn-lg mt-3 animate__animated animate__fadeInUp cta-btn">Rent Now</Link>
                         </div>
                     </div>
                 </div>

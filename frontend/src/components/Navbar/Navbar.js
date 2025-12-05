@@ -112,7 +112,7 @@ export default function Navbar({ connectWallet }) {
     };
 
     const handleConnectRedirect = () => {
-        navigate('/rentacar');
+        navigate('/rentdetails');
     };
 
     return (
@@ -130,7 +130,7 @@ export default function Navbar({ connectWallet }) {
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink className="nav-link" to="/rentacar">
+                                <NavLink className="nav-link" to="/rentdetails">
                                     <AiFillCar className="nav-icon" /> Rent A Car
                                 </NavLink>
                             </li>

@@ -20,7 +20,7 @@ const Rent = (props) => {
   };
 
   // Check status on mount and after transactions
-  const checkStatus = async () => {
+  const checkStatus = React.useCallback(async () => {
     if (props.contract && currentAddress) {
       try {
         const renter = await props.contract.renters(currentAddress);
@@ -30,11 +30,11 @@ const Rent = (props) => {
         console.error('Error checking status:', err);
       }
     }
-  };
+  }, [props.contract, currentAddress]);
 
   React.useEffect(() => {
     checkStatus();
-  }, [props.contract, currentAddress]);
+  }, [checkStatus]);
 
   const pickUpHandler = async () => {
     console.log('🚗 PickUpHandler Triggered');
@@ -116,7 +116,7 @@ const Rent = (props) => {
       setLoading({ ...loading, pickup: false }); // Stop loading spinner
 
       await checkStatus(); // Update local state
-      navigate('/rentacar'); // Ensure we stay/navigate here
+      navigate('/rentdetails'); // Ensure we stay/navigate here
     } catch (err) {
       console.error('Pickup error:', err);
 
@@ -155,7 +155,7 @@ const Rent = (props) => {
       setLoading({ ...loading, dropoff: false });
 
       await checkStatus(); // Update local state
-      navigate('/rentacar'); // Stay on rent page as requested
+      navigate('/rentdetails'); // Stay on rent page as requested
     } catch (err) {
       console.error('Dropoff error:', err);
 

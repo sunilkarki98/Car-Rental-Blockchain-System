@@ -105,7 +105,7 @@ export default function Layout() {
         <Route path="/dashboard" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route
-          path="/rentacar"
+          path="/rentdetails"
           element={
             connected && registered ? (
               <RentDetails contract={contract} />
