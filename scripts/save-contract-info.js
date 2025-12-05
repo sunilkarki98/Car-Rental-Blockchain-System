@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { join } from "path";
 
 /**
  * Save contract deployment information for frontend use
@@ -13,14 +13,14 @@ function saveContractInfo(contractName, address, artifact, network) {
         deployedAt: new Date().toISOString(),
     };
 
-    const frontendContractsDir = path.join(__dirname, "../frontend/src/contracts");
+    const frontendContractsDir = join(__dirname, "../frontend/src/contracts");
 
-    if (!fs.existsSync(frontendContractsDir)) {
-        fs.mkdirSync(frontendContractsDir, { recursive: true });
+    if (!existsSync(frontendContractsDir)) {
+        mkdirSync(frontendContractsDir, { recursive: true });
     }
 
-    const contractPath = path.join(frontendContractsDir, `${contractName}.json`);
-    fs.writeFileSync(contractPath, JSON.stringify(contractInfo, null, 2));
+    const contractPath = join(frontendContractsDir, `${contractName}.json`);
+    writeFileSync(contractPath, JSON.stringify(contractInfo, null, 2));
 
     console.log(`\n📝 Contract info saved to: ${contractPath}`);
     console.log(`   Address: ${address}`);
@@ -28,4 +28,4 @@ function saveContractInfo(contractName, address, artifact, network) {
     console.log(`   Chain ID: ${contractInfo.chainId || "N/A"}\n`);
 }
 
-module.exports = { saveContractInfo };
+export default { saveContractInfo };
